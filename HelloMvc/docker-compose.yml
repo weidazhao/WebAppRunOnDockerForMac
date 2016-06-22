@@ -1,0 +1,7 @@
+version: '2'
+
+services:
+  hellomvc:
+    image: hellomvc
+    ports:
+      - "80:80"

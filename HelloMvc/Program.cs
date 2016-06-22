@@ -8,7 +8,7 @@ namespace HelloMvc
     {
         public static void Main(string[] args)
         {
-            var host = new WebHostBuilder()
+            var host = new WebHostBuilder().UseUrls("http://*:80")
                         .UseKestrel()
                         .UseContentRoot(Directory.GetCurrentDirectory())
                         .UseIISIntegration()
