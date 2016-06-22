@@ -2,6 +2,9 @@ version: '2'
 
 services:
   hellomvc:
-    image: hellomvc
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: hellomvc:latest
     ports:
       - "80:80"
