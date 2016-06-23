@@ -11,7 +11,7 @@ namespace WorksOnMyMachine
             string port = Environment.GetEnvironmentVariable("PORT") ?? "80";
 
             var host = new WebHostBuilder()
-                .UseUrls($"http://*:{port}")
+                .UseUrls($"http://+:{port}")
                 .UseKestrel()
                 .UseContentRoot(Directory.GetCurrentDirectory())
                 .UseIISIntegration()
