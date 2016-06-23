@@ -37,10 +37,13 @@ namespace WorksOnMyMachine
             loggerFactory.AddConsole(Configuration.GetSection("Logging"));
             loggerFactory.AddDebug();
 
-            app.Run(context =>
+            app.MapWhen(context => context.Request.Path == "/", subApp =>
             {
-                context.Response.StatusCode = 200;
-                return Task.CompletedTask;
+                subApp.Run(subContext =>
+                {
+                    subContext.Response.StatusCode = 200;
+                    return Task.CompletedTask;
+                });
             });
 
             if (env.IsDevelopment())
