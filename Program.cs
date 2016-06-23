@@ -14,7 +14,6 @@ namespace WorksOnMyMachine
                 .UseUrls($"http://+:{port}")
                 .UseKestrel()
                 .UseContentRoot(Directory.GetCurrentDirectory())
-                .UseIISIntegration()
                 .UseStartup<Startup>()
                 .Build();
 
