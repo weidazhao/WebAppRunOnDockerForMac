@@ -37,6 +37,12 @@ namespace WorksOnMyMachine
             loggerFactory.AddConsole(Configuration.GetSection("Logging"));
             loggerFactory.AddDebug();
 
+            app.Run(context =>
+            {
+                context.Response.StatusCode = 200;
+                return Task.CompletedTask;
+            });
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
