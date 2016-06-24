@@ -8,6 +8,11 @@ namespace WorksOnMyMachine.Controllers
 {
     public class HomeController : Controller
     {
+        public string Hello()
+        {
+            return "Hello world";
+        }
+
         public IActionResult Index()
         {
             return View();
