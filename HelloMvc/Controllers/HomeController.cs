@@ -33,14 +33,18 @@ namespace WorksOnMyMachine.Controllers
 
             TimeZoneInfo tzInfo = null;
             // Will only work on Windows
-            tzInfo = TimeZoneInfo.FindSystemTimeZoneById("Eastern Standard Time");
+            // tzInfo = TimeZoneInfo.FindSystemTimeZoneById("Eastern Standard Time");
 
             // Works on both Windows and Linux
-            //if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
-            //    tzInfo = TimeZoneInfo.FindSystemTimeZoneById("Eastern Standard Time");
-            //else
-            //    tzInfo = TimeZoneInfo.FindSystemTimeZoneById("America/New_York");
-
+            if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
+            {
+                tzInfo = TimeZoneInfo.FindSystemTimeZoneById("Eastern Standard Time");
+            }
+            else
+            {
+                tzInfo = TimeZoneInfo.FindSystemTimeZoneById("America/New_York");
+            }
+            
             ViewData["TZINFO"] = tzInfo;
 
             var OSArchitecture = RuntimeInformation.OSArchitecture;
