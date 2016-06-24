@@ -36,7 +36,7 @@ namespace WorksOnMyMachine
             loggerFactory.AddConsole(Configuration.GetSection("Logging"));
             loggerFactory.AddDebug();
 
-            app.UseDeveloperExceptionPage();
+            app.UseMiddleware<CatchAllMiddleware>();
 
             app.UseForwardedHeaders(new ForwardedHeadersOptions
             {
