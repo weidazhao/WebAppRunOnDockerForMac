@@ -8,11 +8,6 @@ namespace WorksOnMyMachine.Controllers
 {
     public class HomeController : Controller
     {
-        public string Hello()
-        {
-            return "Hello world";
-        }
-
         public IActionResult Index()
         {
             return View();
@@ -35,7 +30,6 @@ namespace WorksOnMyMachine.Controllers
             //                    Environment.GetEnvironmentVariable("HOSTNAME");
 
             ViewData["HOSTNAME"] = hostName;
-
 
             TimeZoneInfo tzInfo = null;
             // Will only work on Windows

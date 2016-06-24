@@ -40,9 +40,9 @@ namespace WorksOnMyMachine
 
             app.UseForwardedHeaders(new ForwardedHeadersOptions
             {
-                ForwardedHeaders = ForwardedHeaders.All,
-                
+                ForwardedHeaders = ForwardedHeaders.All
             });
+
             app.UseHttpMethodOverride();
 
             app.MapWhen(
@@ -68,8 +68,8 @@ namespace WorksOnMyMachine
 
             app.Run(context =>
             {
-                context.Response.WriteAsync("Fall back");
-                context.Response.StatusCode = 200;
+                context.Response.WriteAsync("Not Found");
+                context.Response.StatusCode = 404;
                 return Task.CompletedTask;
             });
         }
