@@ -1,7 +1,7 @@
 FROM microsoft/dotnet:1.0.0-preview1
 WORKDIR /app
 ENTRYPOINT ["dotnet", "run"]
-COPY HelloMvc/project.json .
+COPY project.json .
 RUN dotnet restore
-COPY HelloMvc/ .
+COPY . .
 RUN dotnet build
