@@ -43,6 +43,18 @@ namespace WorksOnMyMachine
             });
             app.UseHttpMethodOverride();
 
+            app.MapWhen(
+                context => context.Request.Path == "/",
+                subApp =>
+            {
+                subApp.Run(subContext =>
+                {
+                    subContext.Response.WriteAsync("Health check");
+                    subContext.Response.StatusCode = 200;
+                    return Task.CompletedTask;
+                });
+            });
+
             app.UseStaticFiles();
 
             app.UseMvc(routes =>
@@ -54,7 +66,7 @@ namespace WorksOnMyMachine
 
             app.Run(context =>
             {
-                context.Response.WriteAsync("Fallback");
+                context.Response.WriteAsync("Fall back");
                 context.Response.StatusCode = 200;
                 return Task.CompletedTask;
             });
