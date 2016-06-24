@@ -4,4 +4,3 @@ ENTRYPOINT ["dotnet", "run"]
 COPY project.json .
 RUN dotnet restore
 COPY . .
-RUN dotnet build

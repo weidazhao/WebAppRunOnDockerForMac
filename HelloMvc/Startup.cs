@@ -52,16 +52,16 @@ namespace WorksOnMyMachine
                     return Task.CompletedTask;
                 });
             });
-
-            if (env.IsDevelopment())
+            
+            app.UseExceptionHandler(subApp =>
             {
-                app.UseDeveloperExceptionPage();
-                app.UseBrowserLink();
-            }
-            else
-            {
-                app.UseExceptionHandler("/Home/Error");
-            }
+                subApp.Run(subContext =>
+                {
+                    subContext.Response.WriteAsync("Error");
+                    subContext.Response.StatusCode = 400;
+                    return Task.CompletedTask;
+                });
+            });
 
             app.UseStaticFiles();
 

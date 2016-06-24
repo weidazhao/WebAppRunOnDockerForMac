@@ -4,4 +4,3 @@ ENTRYPOINT ["dotnet", "run"]
 COPY HelloMvc/project.json .
 RUN dotnet restore
 COPY HelloMvc/ .
-RUN dotnet build
