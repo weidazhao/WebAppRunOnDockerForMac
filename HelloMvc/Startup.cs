@@ -43,26 +43,6 @@ namespace WorksOnMyMachine
             });
             app.UseHttpMethodOverride();
 
-            app.MapWhen(context => context.Request.Path == "/", subApp =>
-            {
-                subApp.Run(subContext =>
-                {
-                    subContext.Response.WriteAsync("Hello world");
-                    subContext.Response.StatusCode = 200;
-                    return Task.CompletedTask;
-                });
-            });
-            
-            app.UseExceptionHandler(subApp =>
-            {
-                subApp.Run(subContext =>
-                {
-                    subContext.Response.WriteAsync("Error");
-                    subContext.Response.StatusCode = 400;
-                    return Task.CompletedTask;
-                });
-            });
-
             app.UseStaticFiles();
 
             app.UseMvc(routes =>
@@ -70,6 +50,13 @@ namespace WorksOnMyMachine
                 routes.MapRoute(
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
+            });
+
+            app.Run(context =>
+            {
+                context.Response.WriteAsync("Fallback");
+                context.Response.StatusCode = 200;
+                return Task.CompletedTask;
             });
         }
     }
