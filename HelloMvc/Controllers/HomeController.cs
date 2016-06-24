@@ -44,7 +44,7 @@ namespace WorksOnMyMachine.Controllers
             {
                 tzInfo = TimeZoneInfo.FindSystemTimeZoneById("America/New_York");
             }
-            
+
             ViewData["TZINFO"] = tzInfo;
 
             var OSArchitecture = RuntimeInformation.OSArchitecture;
@@ -64,7 +64,9 @@ namespace WorksOnMyMachine.Controllers
 
             StringBuilder envVars = new StringBuilder();
             foreach (DictionaryEntry de in Environment.GetEnvironmentVariables())
+            {
                 envVars.Append(string.Format("<strong>{0}</strong>:{1}<br \\>", de.Key, de.Value));
+            }
 
             ViewData["ENV_VARS"] = envVars.ToString();
 
