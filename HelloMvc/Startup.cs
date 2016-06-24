@@ -1,8 +1,5 @@
-﻿using System.Threading.Tasks;
-using Microsoft.AspNetCore.Builder;
+﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.HttpOverrides;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
@@ -38,25 +35,6 @@ namespace WorksOnMyMachine
 
             app.UseDeveloperExceptionPage();
 
-            app.UseForwardedHeaders(new ForwardedHeadersOptions
-            {
-                ForwardedHeaders = ForwardedHeaders.All
-            });
-
-            app.UseHttpMethodOverride();
-
-            app.MapWhen(
-                context => context.Request.Path == "/",
-                subApp =>
-            {
-                subApp.Run(subContext =>
-                {
-                    subContext.Response.WriteAsync("Health check");
-                    subContext.Response.StatusCode = 200;
-                    return Task.CompletedTask;
-                });
-            });
-
             app.UseStaticFiles();
 
             app.UseMvc(routes =>
@@ -64,13 +42,6 @@ namespace WorksOnMyMachine
                 routes.MapRoute(
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
-            });
-
-            app.Run(context =>
-            {
-                context.Response.WriteAsync("Not Found");
-                context.Response.StatusCode = 404;
-                return Task.CompletedTask;
             });
         }
     }
