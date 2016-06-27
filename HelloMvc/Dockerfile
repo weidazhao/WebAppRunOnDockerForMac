@@ -1,7 +1,5 @@
-FROM microsoft/dotnet:1.0.0-preview1
+FROM microsoft/dotnet:1.0.0-rc2-core
 WORKDIR /app
-ENTRYPOINT ["dotnet", "run"]
-COPY project.json .
-RUN dotnet restore
-COPY . .
-RUN dotnet build
+EXPOSE 80
+ENTRYPOINT ["dotnet", "HelloMvc.dll"]
+COPY . /app
